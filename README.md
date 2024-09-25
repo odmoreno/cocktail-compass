@@ -10,4 +10,4 @@ Un buscador que guía a los usuarios a través de un mundo de cócteles, desde l
 - Zustand (como manejador global de estados)
 - Axios
 
-[Cocktail Compass app](https://github.com/jsx-eslint/eslint-plugin-react)
+[Cocktail Compass app](https://66f3b02756c6a4dbda16cec4--exquisite-lokum-0ea296.netlify.app/)
