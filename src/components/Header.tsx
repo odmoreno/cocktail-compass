@@ -16,29 +16,35 @@ export default function Header() {
     const fetchCategories = useAppStore((state) => state.fetchCategories)
     const categories = useAppStore((state) => state.categories)
     const searchRecipes = useAppStore((state) => state.searchRecipes)
+    const showNotification = useAppStore((state) => state.showNotification);
 
     useEffect(() => {
-        fetchCategories()
-    }, [])
+      fetchCategories();
+    }, []);
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
-        setSearchFilters({
-            ...searchFilters,
-            [e.target.name]: e.target.value
-        })
-    }
+    const handleChange = (
+      e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
+    ) => {
+      setSearchFilters({
+        ...searchFilters,
+        [e.target.name]: e.target.value,
+      });
+    };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        // TODO: validar
-        if (Object.values(searchFilters).includes('')) {
-            console.log('campos obligatorios')
-            return
-        }
-        // consultar recetas
-        searchRecipes(searchFilters)
+      e.preventDefault();
 
-    }
+      if (Object.values(searchFilters).includes("")) {
+        showNotification({
+          text: "Todos los campos obligatorios ",
+          error: true,
+        });
+
+        return;
+      }
+      // consultar recetas
+      searchRecipes(searchFilters);
+    };
 
     return (
         <header className={isHome ? 'bg-header bg-center bg-cover' : 'bg-slate-800'}>
